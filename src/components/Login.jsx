@@ -18,7 +18,6 @@ import useFetch from "../hooks/useFetch";
 import { UrlState } from "@/Context";
 
 const Login = () => {
-
   let [searchParams] = useSearchParams();
   const longLink = searchParams.get("createNew");
 
@@ -39,19 +38,18 @@ const Login = () => {
   };
 
   const {loading, error, fn: fnLogin, data} = useFetch(login, formData);
-  const {fetchUser} = UrlState()
+  const {fetchUser} = UrlState();
 
   useEffect(() => {
     if (error === null && data) {
-        // console.log(data)
       navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
-      fetchUser()
+      fetchUser();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, data]);
 
   const handleLogin = async () => {
-    setErrors([]);
+    setErrors({});
     try {
       const schema = Yup.object().shape({
         email: Yup.string()
@@ -76,36 +74,38 @@ const Login = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>
+    <Card className="max-w-md mx-auto mt-10 p-6">
+      <CardHeader className="mb-4">
+        <CardTitle className="text-2xl font-semibold">Login</CardTitle>
+        <CardDescription className="text-gray-500">
           Login to your account if you already have one
         </CardDescription>
         {error && <Error message={error.message} />}
       </CardHeader>
-      <CardContent className="space-y-2">
+      <CardContent className="space-y-4">
         <div className="space-y-1">
           <Input
             name="email"
             type="email"
             placeholder="Enter Email"
             onChange={handleInputChange}
+            className="px-3 py-2 border rounded"
           />
+          {errors.email && <Error message={errors.email} />}
         </div>
-        {errors.email && <Error message={errors.email} />}
         <div className="space-y-1">
           <Input
             name="password"
             type="password"
             placeholder="Enter Password"
             onChange={handleInputChange}
+            className="px-3 py-2 border rounded"
           />
+          {errors.password && <Error message={errors.password} />}
         </div>
-        {errors.password && <Error message={errors.password} />}
       </CardContent>
-      <CardFooter>
-        <Button onClick={handleLogin}>
+      <CardFooter className="pt-4">
+        <Button className="w-full py-2" onClick={handleLogin} disabled={loading}>
           {loading ? <BeatLoader size={10} color="#36d7b7" /> : "Login"}
         </Button>
       </CardFooter>

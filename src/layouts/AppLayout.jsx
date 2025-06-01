@@ -3,14 +3,14 @@ import {Outlet} from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <div>
-      <main className="min-h-screen container">
+    <div className="flex flex-col min-h-screen">
+      <main className="container flex-grow">
         <Header />
         <Outlet />
       </main>
-      <div className="p-10 text-center bg-gray-800 mt-10">
+      <footer className="p-6 text-center bg-gray-800 text-gray-300 mt-10">
         Made with 💗 by Udanth
-      </div>
+      </footer>
     </div>
   );
 };

@@ -93,46 +93,62 @@ export function CreateLink() {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="destructive">Create New Link</Button>
+        <Button variant="destructive" className="px-4 py-2">
+          Create New Link
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md space-y-6">
         <DialogHeader>
-          <DialogTitle className="font-bold text-2xl">Create New</DialogTitle>
+          <DialogTitle className="font-bold text-2xl mb-2">Create New</DialogTitle>
         </DialogHeader>
         {formValues?.longUrl && (
-          <QRCode ref={ref} size={250} value={formValues?.longUrl} />
+          <div className="flex justify-center mb-6">
+            <QRCode ref={ref} size={250} value={formValues?.longUrl} />
+          </div>
         )}
 
-        <Input
-          id="title"
-          placeholder="Short Link's Title"
-          value={formValues.title}
-          onChange={handleChange}
-        />
-        {errors.title && <Error message={errors.title} />}
-        <Input
-          id="longUrl"
-          placeholder="Enter your Looong URL"
-          value={formValues.longUrl}
-          onChange={handleChange}
-        />
-        {errors.longUrl && <Error message={errors.longUrl} />}
+        <div className="flex flex-col gap-1">
+          <Input
+            id="title"
+            placeholder="Short Link's Title"
+            value={formValues.title}
+            onChange={handleChange}
+            className="focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.title && <Error message={errors.title} />}
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <Input
+            id="longUrl"
+            placeholder="Enter your Looong URL"
+            value={formValues.longUrl}
+            onChange={handleChange}
+            className="focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.longUrl && <Error message={errors.longUrl} />}
+        </div>
+
         <div className="flex items-center gap-2">
-          <Card className="p-2">trimmit.in</Card> /
+          <Card className="p-2 select-none">trimmit.in</Card> /
           <Input
             id="customUrl"
             placeholder="Custom Link (optional)"
             value={formValues.customUrl}
             onChange={handleChange}
+            className="flex-grow focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        {error && <Error message={errors.message} />}
+
+        {error && <Error message={errors.message || error} />}
+
         <DialogFooter className="sm:justify-start">
           <Button
             type="button"
             variant="destructive"
             onClick={createNewLink}
             disabled={loading}
+            className="disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2"
           >
             {loading ? <BeatLoader size={10} color="white" /> : "Create Short URL"}
           </Button>

@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function Location({stats = []}) {
+export default function Location({ stats = [] }) {
   const cityCount = stats.reduce((acc, item) => {
     if (acc[item.city]) {
       acc[item.city] += 1;
@@ -24,12 +24,12 @@ export default function Location({stats = []}) {
   }));
 
   return (
-    <div style={{width: "100%", height: 300}}>
+    <div className="w-full h-72">
       <ResponsiveContainer>
         <LineChart width={700} height={300} data={cities.slice(0, 5)}>
           <XAxis dataKey="city" />
           <YAxis />
-          <Tooltip labelStyle={{color: "green"}} />
+          <Tooltip labelStyle={{ color: "green" }} />
           <Legend />
           <Line type="monotone" dataKey="count" stroke="#82ca9d" />
         </LineChart>

@@ -17,7 +17,7 @@ export default function App({stats}) {
   }));
 
   return (
-    <div style={{width: "100%", height: 300}}>
+    <div className="w-full max-w-lg h-72 mx-auto flex flex-col items-center">
       <ResponsiveContainer>
         <PieChart width={700} height={400}>
           <Pie
