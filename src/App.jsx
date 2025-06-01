@@ -1,57 +1,58 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import { Children } from 'react'
-import AppLayout from './layouts/AppLayout.jsx'
-import LandingPage from './pages/LandingPage'
-import Dashboard from './pages/Dashboard'
-import Auth from './pages/Auth'
-import Link from './pages/Link'
-import RedirectLink from './pages/RedirectLink'
-import UrlProvider from '../src/Context'
-import RequireAuth from './components/RequireAuth'
+import "./App.css";
+import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import UrlProvider from "./Context";
+
+import AppLayout from "./layouts/AppLayout";
+import RequireAuth from "./components/RequireAuth";
+
+import RedirectLink from "./pages/RedirectLink";
+import LandingPage from "./pages/LandingPage";
+import Dashboard from "./pages/Dashboard";
+import LinkPage from "./pages/Link";
+import Auth from "./pages/Auth";
+
 const router = createBrowserRouter([
   {
-    element : <AppLayout/>,
-    children : [
+    element: <AppLayout />,
+    children: [
       {
-        path : "/",
-        element : <LandingPage/>
+        path: "/",
+        element: <LandingPage />,
       },
       {
-        path : "/dashboard",
-        element :(
-              <RequireAuth> 
-                <Dashboard/>
-              </RequireAuth>
+        path: "/auth",
+        element: <Auth />,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
         ),
       },
       {
-        path : "/auth",
-        element : <Auth/>
-      },
-      {
-        path : "/link/:id",
-        element :(
-              <RequireAuth> 
-                <Link/>
-              </RequireAuth>
+        path: "/link/:id",
+        element: (
+          <RequireAuth>
+            <LinkPage />
+          </RequireAuth>
         ),
       },
       {
-        path : "/:id",
-        element : <RedirectLink/>
-      }
-    ]
-  }
-])
+        path: "/:id",
+        element: <RedirectLink />,
+      },
+    ],
+  },
+]);
 
-const App = () => {
+function App() {
   return (
     <UrlProvider>
-    <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </UrlProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -6,14 +6,14 @@ import {Filter} from "lucide-react";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
 import {CreateLink} from "@/components/CreateLink";
-import LinkCard from "@/components/link-card";
+import LinkCard from "@/components/LinkCard";
 import Error from "@/components/Error";
 
 import useFetch from "@/hooks/useFetch";
 
 import {getUrls} from "@/db/apiUrls";
 import {getClicksForUrls} from "@/db/apiClicks";
-import {UrlState} from "@/context";
+import {UrlState} from "@/Context";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
