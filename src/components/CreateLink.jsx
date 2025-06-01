@@ -130,7 +130,7 @@ export function CreateLink() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Card className="p-2 select-none">trimmit.in</Card> /
+          <Card className="p-2 select-none">url-shortener-ten-lovat.vercel.app</Card> /
           <Input
             id="customUrl"
             placeholder="Custom Link (optional)"

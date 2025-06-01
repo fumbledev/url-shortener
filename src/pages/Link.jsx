@@ -76,12 +76,12 @@ const LinkPage = () => {
         {url?.title}
       </span>
       <a
-        href={`https://trimrr.in/${link}`}
+          href={`https://url-shortener-ten-lovat.vercel.app/${link}`}
         target="_blank"
         rel="noopener noreferrer"
         className="text-xl sm:text-2xl text-blue-500 font-semibold hover:underline break-words"
       >
-        https://trimrr.in/{link}
+        https://url-shortener-ten-lovat.vercel.app/{link}
       </a>
       <a
         href={url?.original_url}
@@ -99,7 +99,7 @@ const LinkPage = () => {
         <Button
           variant="ghost"
           onClick={() =>
-            navigator.clipboard.writeText(`https://trimrr.in/${link}`)
+            navigator.clipboard.writeText(`https://url-shortener-ten-lovat.vercel.app/${link}`)
           }
           className="p-2"
           aria-label="Copy short URL"
